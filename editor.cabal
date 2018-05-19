@@ -22,6 +22,7 @@ executable yi
     , yi-keymap-vim
     , yi-misc-modes
     , yi-mode-haskell
+    , yi-mode-javascript
     , yi-rope
   default-language:
     Haskell2010

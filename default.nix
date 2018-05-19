@@ -39,6 +39,12 @@ let
   }) {
     inherit yi-core;
   };
+  yi-mode-javascript = packages.callPackage (packages.haskellSrc2nix {
+    name = "yi-mode-javascript";
+    src = "${yi-source}/yi-mode-javascript";
+  }) {
+    inherit yi-core;
+  };
 in
   packages.callPackage ./package.nix {
     inherit yi-core;
@@ -46,4 +52,5 @@ in
     inherit yi-keymap-vim;
     inherit yi-misc-modes;
     inherit yi-mode-haskell;
+    inherit yi-mode-javascript;
   }

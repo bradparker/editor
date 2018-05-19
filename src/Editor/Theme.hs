@@ -38,22 +38,22 @@ data Mode = Mode
 dark :: Mode
 dark =
   Mode
-    { base03 = RGB 0 43 54
-    , base02 = RGB 7 54 66
-    , base01 = RGB 88 110 117
-    , base00 = RGB 101 123 131
-    , base0 = RGB 131 148 150
-    , base1 = RGB 147 161 161
-    , base2 = RGB 238 232 213
-    , base3 = RGB 253 246 227
-    , yellow = RGB 181 137 0
-    , orange = RGB 203 75 22
-    , red = RGB 220 50 47
-    , magenta = RGB 211 54 130
-    , violet = RGB 108 113 196
-    , blue = RGB 38 139 210
-    , cyan = RGB 42 161 152
-    , green = RGB 133 153 0
+    { base03 = RGB 0 0 0
+    , base02 = RGB 128 128 128
+    , base01 = RGB 0 128 0
+    , base00 = RGB 255 255 0
+    , base0 = RGB 0 0 255
+    , base1 = RGB 0 255 255
+    , base2 = RGB 165 165 165
+    , base3 = RGB 255 255 255
+    , red = RGB 139 0 0
+    , orange = RGB 255 0 0
+    , yellow = RGB 165 42 42
+    , magenta = RGB 128 0 128
+    , violet = RGB 255 0 255
+    , blue = RGB 0 0 139
+    , cyan = RGB 0 139 139
+    , green = RGB 0 100 0
     }
 
 light :: Mode
@@ -92,13 +92,13 @@ solarized mode =
         , stringStyle = withFg (cyan mode)
         , longStringStyle = withFg (cyan mode)
         , typeStyle = withFg (yellow mode)
-        , importStyle = withFg (red mode)
+        , importStyle = withFg (orange mode)
         , dataConstructorStyle = withFg (yellow mode)
         , operatorStyle = withFg (green mode)
         , builtinStyle = withFg (red mode)
         , numberStyle = withFg (cyan mode)
         , regexStyle = withFg (cyan mode)
-        , variableStyle = withFg (base0 mode)
+        , variableStyle = withFg (base1 mode)
         , quoteStyle = withFg (cyan mode)
         }
 
