@@ -1,17 +1,14 @@
-{ nixpkgs ? import <nixpkgs> {}
-, compiler ? "default"
+{ compiler ? "default"
 }:
 let
-  packages = if compiler == "default"
-    then nixpkgs.haskellPackages
-    else nixpkgs.haskell.packages.${compiler};
+  packages = import ./nix/packages {
+    inherit compiler;
+  };
 
-  hlint = packages.hlint;
-  hindent = packages.hindent;
-  cabal = packages.cabal-install;
+  tools = import ./nix/tools.nix packages;
 
-  env = (import ./default.nix { inherit nixpkgs; inherit compiler; }).env;
+  package = import ./. {
+    inherit compiler;
+  };
 in
-  nixpkgs.lib.overrideDerivation env (drv: {
-    nativeBuildInputs = drv.nativeBuildInputs ++ [ hlint hindent cabal ];
-  })
+  (packages.haskell.lib.addBuildDepends package tools).env
