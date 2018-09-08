@@ -5,6 +5,7 @@ module Editor.KeymapSet
   ) where
 
 import Editor.Formatters.Haskell (haskellFormatB)
+import Editor.Formatters.RemoveNewlines (removeNewlinesB)
 import Yi
   ( EditorM
   , Event
@@ -13,6 +14,7 @@ import Yi
   , char
   , ctrl
   , override
+  , shift
   , withCurrentBuffer
   )
 import Yi.Fuzzy (fuzzyOpen)
@@ -46,5 +48,6 @@ keymapSet =
           [ nmap (ctrl (char 'l')) (pureEval this ":nohlsearch<CR>")
           , nmapY (ctrl (char 'p')) fuzzyOpen
           , vlmap (char '=') (withCurrentBuffer haskellFormatB)
+          , vlmap (shift (char 'j')) (withCurrentBuffer removeNewlinesB)
           ]
       }

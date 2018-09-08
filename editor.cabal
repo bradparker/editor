@@ -32,5 +32,6 @@ executable yi
     Haskell2010
   other-modules:
     Editor.Formatters.Haskell
+    Editor.Formatters.RemoveNewlines
     Editor.Theme
     Editor.KeymapSet
