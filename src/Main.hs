@@ -19,16 +19,24 @@ import Yi
   , preSaveHooks
   , startEditor
   )
-import Yi.Config.Default.HaskellMode (configureHaskellMode)
 import Yi.Config.Default.JavaScriptMode (configureJavaScriptMode)
 import Yi.Config.Default.MiscModes (configureMiscModes)
 import Yi.Config.Default.Vim (configureVim)
 import Yi.Config.Default.Vty (configureVty)
-import Yi.Config.Simple (defaultKm, lineNumbers, modes, startActions, theme)
+import Yi.Config.Simple
+  ( defaultKm
+  , lineNumbers
+  , lineWrap
+  , modes
+  , startActions
+  , theme
+  , addMode
+  )
 import Yi.Config.Simple.Types (ConfigM(runConfigM))
 
 import Editor.Theme (solarizedLight)
 import Editor.KeymapSet (keymapSet)
+import Editor.Modes.Haskell (haskellMode)
 
 configurePresaveHooks :: ConfigM ()
 configurePresaveHooks = preSaveHooks %= (<> customHooks)
@@ -57,12 +65,13 @@ config :: [String] -> ConfigM ()
 config args = do
   configureVty
   configureVim
-  configureHaskellMode
+  addMode haskellMode
   configureJavaScriptMode
   configureMiscModes
   configureIndentSettings
   configurePresaveHooks
   lineNumbers .= True
+  lineWrap .= False
   theme .= solarizedLight
   startActions .= openInTabs args
   defaultKm .= keymapSet

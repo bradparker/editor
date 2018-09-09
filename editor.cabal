@@ -15,6 +15,7 @@ executable yi
     -Wall -ferror-spans -threaded
   build-depends:
       base >= 4.8 && < 5
+    , attoparsec
     , bytestring
     , hindent
     , microlens-platform
@@ -31,7 +32,8 @@ executable yi
   default-language:
     Haskell2010
   other-modules:
-    Editor.Formatters.Haskell
     Editor.Formatters.RemoveNewlines
-    Editor.Theme
     Editor.KeymapSet
+    Editor.Modes.Haskell
+    Editor.Theme
+    Editor.ExCommands
